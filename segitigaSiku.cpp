@@ -76,4 +76,6 @@ main(){
     siku3(n);
     cout << "Pola 4 : \n";
     siku4(n);
+
+    system("pause");
 }
