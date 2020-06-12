@@ -101,6 +101,7 @@ main()
 
         default:
             cout << "INVALID SELECTION INPUT" << endl;
+            system("pause");
             break;
         }
 
@@ -150,9 +151,9 @@ void enqueue()
 
 void dequeue()
 {
+    system("cls");
     if (head == NULL)
     {
-        system("cls");
         cout << "QUEUE IS EMPTY!!";
     }
     else
