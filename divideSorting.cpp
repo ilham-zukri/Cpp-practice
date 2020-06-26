@@ -2,102 +2,105 @@
 #include <conio.h>
 
 using namespace std;
-void tukar(int &a, int &b) 
-{    
-    int temp;
-    temp = a;
-    a = b;
-    b = temp;
-}
 
-void tampil(int *array, int size) 
+void printArray(int *array, int size);
+void mergeSort(int *array, int left, int right);
+
+int main()
 {
-    for(int i = 0; i < size; i++)
-        cout <<array[i] <<" ";
-    cout <<endl;
-}
+    int n;
+    int arr[n];
+    cout << "=============Divide(Merge) Sort=============\n";
+    cout << "Count of number    : ";
+    cin >> n;
+    cout << "Input number       : " << endl;
 
-void merge(int *array, int kiri, int tengah, int kanan) 
-{
-    int i, j, k, nKiri, nKanan;
-    nKiri = tengah - kiri + 1; 
-    nKanan = kanan - tengah;
-
-    int kiriArr[nKiri]; 
-    int kananArr[nKanan];
-    for(i = 0; i < nKiri; i++)
-        kiriArr[i] = array[kiri+i];
-    for(j = 0; j < nKanan; j++)
-        kananArr[j] = array[tengah + 1 + j];
-    i = 0; 
-    j = 0; 
-    k = kiri;
-   
-    while(i < nKiri && j < nKanan) 
+    for (int i = 0; i < n; i++)
     {
-        if(kiriArr[i] <= kananArr[j]) 
+        cout << "   data " << (i+1) << " = ";
+        cin >> arr[i];
+    }
+
+    system("cls");
+    cout << "Before Sorting  : ";
+    printArray(arr, n);
+    mergeSort(arr, 0, n - 1);
+    cout << "After Sorting   : ";
+    printArray(arr, n);
+    cout << "\n" << endl;
+    system("pause");
+
+    system("cls");
+    cout << "Aulia Ilham Zukri\n";
+    cout << "20190801368\n";
+
+    system("pause");
+    return 0;
+}
+
+void printArray(int *array, int size)
+{
+    for (int i = 0; i < size; i++)
+        cout << array[i] << " ";
+    cout << endl;
+}
+
+void merge(int *array, int left, int mid, int right)
+{
+    int i, j, k, nLeft, nRight;
+    nLeft = mid - left + 1;
+    nRight = right - mid;
+
+    int leftArr[nLeft];
+    int rightArr[nRight];
+
+    for (i = 0; i < nLeft; i++)
+        leftArr[i] = array[left + i];
+
+    for (j = 0; j < nRight; j++)
+        rightArr[j] = array[mid + 1 + j];
+
+    i = 0;
+    j = 0;
+    k = left;
+
+    while (i < nLeft && j < nRight)
+    {
+        if (leftArr[i] <= rightArr[j])
         {
-            array[k] = kiriArr[i];
+            array[k] = leftArr[i];
             i++;
         }
         else
         {
-            array[k] = kananArr[j];
+            array[k] = rightArr[j];
             j++;
-    }
-    k++;
-    }
-
-    while(i < nKiri) 
-    {
-        array[k] = kiriArr[i];
-        i++; 
+        }
         k++;
     }
-    while(j < nKanan) 
-    {     
-        array[k] = kananArr[j];
-        j++; 
+
+    while (i < nLeft)
+    {
+        array[k] = leftArr[i];
+        i++;
+        k++;
+    }
+    while (j < nRight)
+    {
+        array[k] = rightArr[j];
+        j++;
         k++;
     }
 }
 
-void mergeSort(int *array, int kiri, int kanan) 
+void mergeSort(int *array, int left, int right)
 {
-    int tengah;
-    if (kiri < kanan) 
+    int mid;
+    if (left < right)
     {
-        int tengah = kiri + (kanan - kiri)/2;
-        mergeSort(array, kiri, tengah);
-        mergeSort(array, tengah + 1, kanan);
-        merge(array, kiri, tengah, kanan);
+        int mid = left + (right - left) / 2;
+        mergeSort(array, left, mid);
+        mergeSort(array, mid + 1, right);
+        merge(array, left, mid, right);
     }
-}
-
-int main() {
-    int n;
-    cout <<"    Pengurutan Merge Sort    \n";
-    cout <<"=============================\n";
-    cout <<"Masukkan Banyak Data : ";
-    cin >> n;
-    int arr[n];   
-    cout <<"Masukkan Data : " << endl;
-    for(int i = 0; i < n; i++) 
-    {
-        cin >> arr[i];
-    }
-    cout <<endl;
-    cout <<"Data Sebelum di Sorting : ";
-    tampil(arr, n);
-    cout <<endl;
-    mergeSort(arr, 0, n-1);    
-    cout <<"Data Setelah di Sorting : ";
-    tampil(arr, n);
-    cout <<endl ;
-
-    cout <<"\nHapiz Nuddin Setiadi\n";
-    cout <<"20190801364\n";
-
-    system("pause");
-    return 0;
 }

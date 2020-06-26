@@ -1,19 +1,25 @@
-#include<iostream>
-#include <iomanip>
+#include <bits/stdc++.h>
+
 using namespace std;
 
 int main()
 {
-    int a, b;
-    float hasil = 0.0f;
-    //cin >> a;
+    int j = 0;
+    vector<vector<int>> arrayInt = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
 
-    cout << a - 1;
-    // cin >> b;
+    for (int i = 0; i < arrayInt.size(); i++)
+    {
+        cout << arrayInt[i][j] << endl;
+        j++;
+    }
 
-    // hasil = ((float)a + (float)b) / 2;
-    // cout << fixed << showpoint;
-    // cout << setprecision(4);
-    // cout << hasil << endl;
+    j = 2;
+
+    for (int i = 0; i < arrayInt.size(); i++)
+    {
+        cout << arrayInt[i][j] << endl;
+        j--;
+    }
+
     return 0;
 }

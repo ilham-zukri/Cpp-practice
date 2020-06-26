@@ -2,66 +2,71 @@
 #include <conio.h>
 #include <iostream>
 
-int a[100];
-int max, min;
+int number[100];
+int maxVal, minVal;
 
-void maxmin(int i, int j) 
+void maximumAndMinimumValue(int i, int j)
 {
-  int max1, min1, mid;
-  if (i == j) 
+  int max1, min1, midValue;
+  if (i == j)
   {
-    max = min = a[i];   
+    maxVal = minVal = number[i];
   }
-  else if (i == j-1) 
+
+  else if (i == j - 1)
   {
-    if (a[i] > a[j]) 
+    if (number[i] > number[j])
     {
-      max = a[i];
-      min = a[j];  
+      maxVal = number[i];
+      minVal = number[j];
     }
-    else 
+    else
     {
-      max = a[j];
-      min = a[i];  
+      maxVal = number[j];
+      minVal = number[i];
     }
   }
-  else 
+
+  else
   {
-    mid = (i + j)/2;
-    maxmin(i, mid);
-    max1 = max;
-    min1 = min;
-    maxmin(mid + 1, j);
-    if (max < max1)
-      max = max1;
-    if (min > min1)
-      min = min1;  
+    midValue = (i + j) / 2;
+    maximumAndMinimumValue(i, midValue);
+    max1 = maxVal;
+    min1 = minVal;
+    maximumAndMinimumValue(midValue + 1, j);
+    if (maxVal < max1)
+      maxVal = max1;
+    if (minVal > min1)
+      minVal = min1;
   }
 }
 
-int main() 
+int main()
 {
-  int i, num;
-     
-     std::cout <<"    Mencari Nilai Maximum Minimum    \n";
-     std::cout <<"=====================================\n";
-     std::cout <<"\nMasukkan Banyak Angka: ";
-     std::cin >>num;
-     std::cout <<"\nMasukkan Angka: \n";
-    for(i = 0; i < num; i++) 
-    {
-      std::cin >>a[i]; 
-    }
+  int numberCount;
 
-    max = a[0];
-    min = a[0];
-    maxmin(0, num-1);
-    std::cout <<"\nNilai Angka Maximum : " <<max;
-    std::cout <<"\nNilai Angka Minimum : " <<min;
+  std::cout << "==================Maximum and Minimum Value==================\n";
+  std::cout << "Count of Number : "; std::cin >> numberCount;
+  std::cout << std::endl;
+  
+  std::cout << "Input Number : " << std::endl;
+  for (int i = 0; i < numberCount; i++)
+  {
+    std::cout << "Number" << (i+1) << " = "; std::cin >> number[i];
+  }
 
-    std::cout <<"\n\nHapiz Nuddin Setiadi\n";
-    std::cout <<"20190801364\n\n";
+  maxVal = number[0];
+  minVal = number[0];
+  maximumAndMinimumValue(0, numberCount - 1);
+  std::cout << "Maximum Value : " << maxVal;
+  std::cout << "\nMinimum Value : " << minVal << std::endl;
+  system("pause");
 
-    system("pause");
-    return 0;
+  system("cls");
+  std::cout << "========================\n";
+  std::cout << "Aulia Ilham Zukri\n";
+  std::cout << "20190801368\n"<< std::endl;
+
+  system("pause");
+  return 0;
 }
